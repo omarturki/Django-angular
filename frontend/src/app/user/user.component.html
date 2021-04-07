@@ -1,0 +1,116 @@
+<div class="container-lg" style="background-color: white;min-width: 800px;min-height: 600px;padding: 15px 15px 15px 15px;">
+  <div class="table-responsive">
+      <div class="table-wrapper">
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-8"><h2>Users <b>Details</b></h2></div>
+                  <div class="col-sm-4">
+                      <button type="button" class="btn btn-info add-new" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Add New</button>
+                  </div>
+              </div>
+          </div>
+          <table class="table table-hover" style="background-color: white;">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Email</th>
+                <th>password</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let u of users">
+                  <td>{{u.username}}</td>
+                  <td>{{u.email}}</td>
+                  <td>{{u.password}}</td>
+                      <td class="actions">
+                        <button class="btn btn-danger btn-sm" (click)="deleteUsers(u.id)" >Supprimer</button><button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateModal" (click)="this.userUpdated = u">Modifier</button><button class="btn btn-info btn-sm">Plus Info</button>
+                      </td>
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter Utilisateur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addUserForm" (ngSubmit)="signup()" class="signup">
+          <div class="form-group">
+            <input type="text" placeholder="username" class="form-control" formControlName="username" [(ngModel)]="this.user.username" >
+        </div>
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email Address" formControlName="email" [ngClass]="{'inputErrors': this.addUserForm.controls.email.errors,'inputSuccess':!this.addUserForm.controls.email.errors}" [(ngModel)]="this.user.email">
+          </div>
+          <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" formControlName="password" [ngClass]="{'inputErrors': this.addUserForm.controls.password.errors,'inputSuccess':!this.addUserForm.controls.password.errors}" [(ngModel)]="this.user.password">
+          </div>
+          <div class="form-group">
+              <input type="password" placeholder="Confirm password" class="form-control"formControlName="verifPassword" [ngClass]="{'inputErrors': this.addUserForm.controls.verifPassword.errors,'inputSuccess':!this.addUserForm.controls.verifPassword.errors}">
+          </div>
+
+
+          <div class="modal-footer">
+            <div class="offser-6 actions">
+            <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary " >Save </button>
+          </div>
+          </div>
+          </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Update Utilisateur</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateForm" (ngSubmit)="updateUser()" class="signup">
+          <div class="form-group">
+            <input type="text" placeholder="username" class="form-control" formControlName="username" [(ngModel)]="this.userUpdated.username" >
+        </div>
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Email Address" formControlName="email" [ngClass]="{'inputErrors': this.updateForm.controls.email.errors,'inputSuccess':!this.updateForm.controls.email.errors}" [(ngModel)]="this.userUpdated.email">
+          </div>
+          <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" formControlName="password" [ngClass]="{'inputErrors': this.updateForm.controls.password.errors,'inputSuccess':!this.updateForm.controls.password.errors}" [(ngModel)]="this.userUpdated.password">
+          </div>
+          <div class="form-group">
+              <input type="password" placeholder="Confirm password" class="form-control"formControlName="verifPassword" [ngClass]="{'inputErrors': this.updateForm.controls.verifPassword.errors,'inputSuccess':!this.updateForm.controls.verifPassword.errors}">
+          </div>
+
+
+          <div class="modal-footer">
+            <div class="offser-6 actions">
+            <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary ">Save </button>
+          </div>
+          </div>
+          </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.showLogin {
+    margin-left: 0px;
+}
+
+.showSignup {
+    margin-left: -50%;
+}
+
+.inputSuccess {
+    border: 2px solid green !important;
+}
+
+.inputErrors {
+    border: 2px solid red !important;
+}

@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <div class="title-text">
+        <div class="title login" [ngClass]="{'showLogin':login,'showSignup':!login}">
+            Login Form</div>
+        <div class="title signup">
+            Signup Form</div>
+    </div>
+    <app-root></app-root>
+    <div class="form-container">
+        <div class="slide-controls">
+            <input type="radio" name="slide" id="login" [checked]="login">
+            <input type="radio" name="slide" id="signup" [checked]="!login">
+            <label for="login" class="slide login" (click)="login=true">Login</label>
+            <label for="signup" class="slide signup" (click)="login=false">Signup</label>
+            <div class="slider-tab">
+            </div>
+        </div>
+        <div class="form-inner">
+            <form [formGroup]="loginForm" (ngSubmit)="authenticate(this)" class="login" [ngClass]="{'showLogin':login,'showSignup':!login}">
+                <div class="field">
+                    <input type="text" placeholder="Email Address" formControlName="email" [(ngModel)]="this.userlogin.email">
+                </div>
+                <div class="field">
+                    <input type="password" placeholder="Password" formControlName="password" [(ngModel)]="this.userlogin.password">
+                </div>
+                <div class="pass-link">
+                    <a href="#">Forgot password?</a></div>
+                <div class="field btn">
+                    <div class="btn-layer">
+                    </div>
+                    <input type="submit" value="Login">
+                </div>
+                <div class="signup-link">
+                    Not a member? <a (click)="login=false">Signup now</a></div>
+            </form>
+            <form [formGroup]="signupForm" (ngSubmit)="signup()" class="signup">
+                <div class="field">
+                    <input type="text" placeholder="Email Address" formControlName="email" [ngClass]="{'inputErrors': this.signupForm.controls.email.errors,'inputSuccess':!this.signupForm.controls.email.errors}" [(ngModel)]="this.user.email">
+                </div>
+                <div class="field">
+                    <input type="password" placeholder="Password" formControlName="password" [ngClass]="{'inputErrors': this.signupForm.controls.password.errors,'inputSuccess':!this.signupForm.controls.password.errors}" [(ngModel)]="this.user.password">
+                </div>
+                <div class="field">
+                    <input type="password" placeholder="Confirm password" formControlName="verifPassword" [ngClass]="{'inputErrors': this.signupForm.controls.verifPassword.errors,'inputSuccess':!this.signupForm.controls.verifPassword.errors}">
+                </div>
+                <div class="field btn">
+                    <div class="btn-layer">
+                    </div>
+                    <input type="submit" value="Signup">
+                </div>
+            </form>
+        </div>
+    </div>
